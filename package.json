@@ -1,0 +1,16 @@
+{
+	"name": "@magneds/hapi-plugin-pdf",
+	"version": "0.0.0",
+	"description": "",
+	"main": "source/index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "UNLICENSED",
+	"dependencies": {
+		"@magneds/hapi-plugin": "^1.0",
+		"puppeteer": "^1.10.0"
+	}
+}
