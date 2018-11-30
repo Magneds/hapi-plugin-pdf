@@ -51,6 +51,23 @@ The pdf plugins registers a single route and works with both the `GET` and `POST
 
 The request is delegated to the provided url using the method used to call the `/pdf/render` endpoint, any GET and/or POST paramater as well as all headers are added to the delegated request.
 
+_NOTE_, the '/pdf' portion of the route is a so-called route prefix, it can be changed to whatever you'd like during registration to Hapi by specifying an alternative.
+
+#### Using `@magneds/hapi-server`
+
+```js
+	.plugin({ ...HapiPluginPDF, routes: { prefix: '/my-custom/pdf' } })
+```
+
+#### Using `hapi`
+
+```js
+	await server.register({ ...HapiPluginPDF, routes: { prefix: '/my-custom/pdf' } });
+};
+
+init();
+```
+
 ```
 GET http://localhost:3000/pdf/render?url=https://www.magneds.com
 ```
