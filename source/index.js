@@ -35,8 +35,8 @@ plugin.register = (server) =>
 							headers: {
 								...headers,
 								'accept-encoding': undefined,
-								'content-length': undefined,
-							},
+								'content-length': undefined
+							}
 						};
 
 						return request.continue(override);
@@ -44,18 +44,18 @@ plugin.register = (server) =>
 				}
 
 				await page.goto(url + (param ? `?${param}` : ''), {
-					waitUntil: 'load',
+					waitUntil: 'load'
 				});
 				const pdf = await page.pdf({
 					format: 'A4',
-					printBackground: true,
+					printBackground: true
 				});
 
 				return h
 					.response(pdf)
 					.header('content-type', 'application/pdf');
-			},
-		},
+			}
+		}
 	]);
 
 module.exports = plugin.export;

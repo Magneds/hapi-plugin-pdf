@@ -1,16 +1,27 @@
 {
 	"name": "@magneds/hapi-plugin-pdf",
 	"version": "0.0.0",
-	"description": "",
+	"description": "Hapi plugin to render web pages as PDF",
 	"main": "source/index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"check-style": "node_modules/.bin/eslint source/**/*.js && echo 'No problems found'",
+		"fix-style": "node_modules/.bin/eslint --fix source/**/*.js"
 	},
-	"keywords": [],
-	"author": "",
-	"license": "UNLICENSED",
+	"keywords": [
+		"hapi",
+		"pdf",
+		"render"
+	],
+	"author": "Rogier Spieker <rogier.spieker@magneds.com>",
+	"license": "MIT",
 	"dependencies": {
 		"@magneds/hapi-plugin": "^1.0",
 		"puppeteer": "^1.10.0"
+	},
+	"devDependencies": {
+		"eslint": "^5.9.0",
+		"eslint-config-prettier": "^3.3.0",
+		"eslint-plugin-prettier": "^3.0.0",
+		"prettier": "^1.15.3"
 	}
 }
