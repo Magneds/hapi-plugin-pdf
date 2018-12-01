@@ -58,4 +58,4 @@ plugin.register = (server) =>
 		}
 	]);
 
-module.exports = plugin.export;
+module.exports = plugin.exports;
