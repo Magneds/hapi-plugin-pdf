@@ -11,6 +11,13 @@
 		"check-style": "node_modules/.bin/eslint source/**/*.js && echo 'No problems found'",
 		"fix-style": "node_modules/.bin/eslint --fix source/**/*.js"
 	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Magneds/hapi-plugin-pdf.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Magneds/hapi-plugin-pdf/issues"
+	},
 	"keywords": [
 		"hapi",
 		"pdf",
