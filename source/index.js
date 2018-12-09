@@ -13,14 +13,15 @@ function serialize(obj) {
 
 plugin.name = 'pdf';
 plugin.prefix = '/pdf';
-plugin.register = (server) =>
+plugin.register = async (server) => {
+	const browser = await Puppeteer.launch();
+
 	server.route([
 		{
 			method: ['GET', 'POST'],
 			path: '/render',
 			async handler(request, h) {
 				const { method, query, payload, headers } = request;
-				const browser = await Puppeteer.launch();
 				const page = await browser.newPage();
 				const url = (payload || {}).url || query.url;
 				const param = serialize(query);
@@ -52,7 +53,6 @@ plugin.register = (server) =>
 				});
 
 				await page.close();
-				await browser.disconnect();
 
 				return h
 					.response(pdf)
@@ -60,5 +60,6 @@ plugin.register = (server) =>
 			}
 		}
 	]);
+};
 
 module.exports = plugin.exports;
