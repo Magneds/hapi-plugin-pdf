@@ -51,6 +51,9 @@ plugin.register = (server) =>
 					printBackground: true
 				});
 
+				await page.close();
+				await browser.disconnect();
+
 				return h
 					.response(pdf)
 					.header('content-type', 'application/pdf');
