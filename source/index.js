@@ -31,14 +31,17 @@ plugin.register = async (server) => {
 
 					page.on('request', (request) => {
 						const override = {
-							method: 'POST',
-							postData: serialize(payload),
 							headers: {
 								...headers,
 								'accept-encoding': undefined,
 								'content-length': undefined
 							}
 						};
+
+						if (request.url() === url) {
+							override.method = 'POST';
+							override.postData = serialize(payload);
+						}
 
 						return request.continue(override);
 					});
