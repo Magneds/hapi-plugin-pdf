@@ -24,7 +24,6 @@ plugin.register = async (server) => {
 				const { method, query, payload, headers } = request;
 				const page = await browser.newPage();
 				const url = (payload || {}).url || query.url;
-				const param = serialize(query);
 
 				if (method === 'post') {
 					await page.setRequestInterception(true);
@@ -47,7 +46,7 @@ plugin.register = async (server) => {
 					});
 				}
 
-				await page.goto(url + (param ? `?${param}` : ''), {
+				await page.goto(url, {
 					waitUntil: 'load'
 				});
 				const pdf = await page.pdf({
