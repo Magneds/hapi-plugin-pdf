@@ -11,10 +11,19 @@ function serialize(obj) {
 		.join('&');
 }
 
+function omit(object, ...keys) {
+	return keys.reduce((carry, key) => {
+		const { [key]: omit, ...rest } = carry;
+
+		return rest;
+	}, object);
+}
+
 plugin.name = 'pdf';
 plugin.prefix = '/pdf';
 plugin.register = async (server) => {
 	const browser = await Puppeteer.launch();
+	const remove = ['host', 'accept-encoding', 'content-length'];
 
 	server.route([
 		{
@@ -30,11 +39,7 @@ plugin.register = async (server) => {
 
 					page.on('request', (request) => {
 						const override = {
-							headers: {
-								...headers,
-								'accept-encoding': undefined,
-								'content-length': undefined
-							}
+							headers: omit(headers, ...remove)
 						};
 
 						if (request.url() === url) {
