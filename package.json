@@ -1,6 +1,6 @@
 {
 	"name": "@magneds/hapi-plugin-pdf",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "Hapi plugin to create PDF's from webpages",
 	"publishConfig": {
 		"@magneds:registry": "https://registry.npmjs.org"
