@@ -45,7 +45,7 @@ init();
 
 ## API
 
-The pdf plugins registers a single route and works with both the `GET` and `POST` request methods.
+The pdf plugins registers two routes. The `/pdf/render` works with both the `GET` and `POST` request methods, the `pdf/render/content` works only with a `POST` request.
 
 ### `/pdf/render`
 
@@ -62,6 +62,12 @@ Any header provided will be provided to the final destination.
 Like the GET request, a POST request also only requires the `url` parameter, which may be provided in either the payload (body) or as parameter to the url.
 
 All headers and payload data will be provided to the final destination.
+
+### `/pdf/render/content`
+
+#### POST request
+
+A POST request only requires the `content` parameter, which may should be provided in the payload (body).
 
 #### Changing the path prefix
 

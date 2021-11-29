@@ -53,6 +53,24 @@ experiment('Hapi', () => {
 			expect(post.headers).to.contain('content-type');
 			expect(post.headers['content-type']).to.equal('application/pdf');
 		});
+
+		test('POST content', { timeout: 10000 }, async () => {
+			const server = await start(HapiPluginPDF);
+			const post = await server.inject({
+				method: 'POST',
+				url: '/pdf/render/content',
+				payload: {
+					content: 'content',
+					foo: 'bar',
+					baz: 'qux'
+				}
+			});
+
+			expect(post).to.be.object();
+			expect(post.statusCode).to.equal(200);
+			expect(post.headers).to.contain('content-type');
+			expect(post.headers['content-type']).to.equal('application/pdf');
+		});
 	});
 
 	experiment('path prefix override', () => {
@@ -85,6 +103,27 @@ experiment('Hapi', () => {
 				url: '/override/path/render',
 				payload: {
 					url: 'https://postman-echo.com/post',
+					foo: 'bar',
+					baz: 'qux'
+				}
+			});
+
+			expect(post).to.be.object();
+			expect(post.statusCode).to.equal(200);
+			expect(post.headers).to.contain('content-type');
+			expect(post.headers['content-type']).to.equal('application/pdf');
+		});
+
+		test('POST content', { timeout: 10000 }, async () => {
+			const server = await start({
+				...HapiPluginPDF,
+				routes: { prefix: '/override/path' }
+			});
+			const post = await server.inject({
+				method: 'POST',
+				url: '/override/path/render/content',
+				payload: {
+					content: 'content',
 					foo: 'bar',
 					baz: 'qux'
 				}
