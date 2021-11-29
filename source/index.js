@@ -65,6 +65,30 @@ plugin.register = async (server) => {
 					.response(pdf)
 					.header('content-type', 'application/pdf');
 			}
+		},
+		{
+			method: ['GET', 'POST'],
+			path: '/render/content',
+			async handler(request, h) {
+				const { method, query, payload, headers } = request;
+				const page = await browser.newPage();
+				const content = (payload || {}).content || '';
+
+				await page.setContent(content, {
+					waitUntil: 'load'
+				});
+
+				const pdf = await page.pdf({
+					format: 'A4',
+					printBackground: true
+				});
+
+				await page.close();
+
+				return h
+					.response(pdf)
+					.header('content-type', 'application/pdf');
+			}
 		}
 	]);
 };
