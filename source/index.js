@@ -22,7 +22,7 @@ function omit(object, ...keys) {
 plugin.name = 'pdf';
 plugin.prefix = '/pdf';
 plugin.register = async (server) => {
-	const browser = await Puppeteer.launch();
+	const browser = await Puppeteer.launch({ args: ['--no-sandbox'] });
 	const remove = ['host', 'accept-encoding', 'content-length'];
 
 	server.route([
